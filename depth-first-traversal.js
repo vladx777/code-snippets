@@ -96,3 +96,67 @@ r.right = u;
 s.right = v;
 
 console.log(sumTree(q));
+
+//recursively
+const preOrder = (root) => {
+  if (root === null) return;
+  console.log(root.val);
+  preOrder(root.left);
+  preOrder(root.right);
+};
+
+//self, left, right
+//      a
+//     / \
+//    b   c
+//   / \   \
+//  d   e   f
+
+console.log("preOrder");
+preOrder(a);
+
+//recursively
+const postOrder = (root) => {
+  if (root === null) return;
+
+  postOrder(root.left);
+  postOrder(root.right);
+  console.log(root.val); //comes last
+};
+
+//left, right, self
+//      a
+//     / \
+//    b   c
+//   / \   \
+//  d   e   f
+
+console.log("postOrder");
+postOrder(a);
+
+//recursively
+const inOrder = (root) => {
+  if (root === null) return;
+
+  inOrder(root.left);
+  console.log(root.val); //comes in the middle
+  inOrder(root.right);
+};
+
+//left, self, right
+//      a
+//     / \
+//    b   c
+//   / \   \
+//  d   e   f
+
+console.log("inOrder");
+inOrder(a);
+
+//recursive sums
+
+const sumTreeRec = (root) => {
+  if (root === null) return 0;
+  return sumTreeRec(root.left) + root.val + sumTreeRec(root.right);
+};
+console.log("sumTreeRec", sumTreeRec(q));
