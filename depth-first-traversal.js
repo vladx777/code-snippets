@@ -25,57 +25,58 @@ b.left = d;
 b.right = e;
 c.right = f;
 
-//list in bft order
-const bft = (root) => {
-  const queue = [root];
-  while (queue.length > 0) {
-    const curr = queue.pop();
+//list in depthFirst order
+const depthFirstPrint = (root) => {
+  const stack = [root];
+  while (stack.length > 0) {
+    const curr = stack.pop();
     console.log(curr.val);
-    if (curr.left != null) {
-      queue.push(curr.left);
-    }
+
+    //swap right and left to go from left to right and vice versa
     if (curr.right != null) {
-      queue.push(curr.right);
+      stack.push(curr.right);
+    }
+    if (curr.left != null) {
+      stack.push(curr.left);
     }
   }
 };
 
-bft(a);
+depthFirstPrint(a);
 
 //search
-const bfs = (root, target) => {
-  const queue = [root];
-  while (queue.length > 0) {
-    const curr = queue.pop();
-    // console.log(curr.val);
+const depthFirstSearch = (root, target) => {
+  const stack = [root];
+  while (stack.length > 0) {
+    const curr = stack.pop();
+    console.log(curr.val);
     if (curr.val == target) {
       return true;
     }
-    if (curr.left != null) {
-      queue.push(curr.left);
-    }
     if (curr.right != null) {
-      queue.push(curr.right);
+      stack.push(curr.right);
+    }
+    if (curr.left != null) {
+      stack.push(curr.left);
     }
   }
   return false;
 };
 
-console.log(bfs(a, "f")); //true
-console.log(bfs(a, "z")); //false
+console.log(depthFirstSearch(a, "f")); //true
+console.log(depthFirstSearch(a, "z")); //false
 
 const sumTree = (root) => {
-  const queue = [root];
+  const stack = [root];
   let sum = 0;
-  while (queue.length > 0) {
-    const curr = queue.pop();
+  while (stack.length > 0) {
+    const curr = stack.pop();
     sum += curr.val;
-
-    if (curr.left != null) {
-      queue.push(curr.left);
-    }
     if (curr.right != null) {
-      queue.push(curr.right);
+      stack.push(curr.right);
+    }
+    if (curr.left != null) {
+      stack.push(curr.left);
     }
   }
   return sum;
